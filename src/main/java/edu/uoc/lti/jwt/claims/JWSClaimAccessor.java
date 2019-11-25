@@ -1,9 +1,10 @@
 package edu.uoc.lti.jwt.claims;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.uoc.elc.lti.jwt.LtiSigningKeyResolver;
-import edu.uoc.elc.lti.tool.claims.ClaimAccessor;
-import edu.uoc.elc.lti.tool.claims.ClaimsEnum;
+
+import edu.uoc.lti.claims.ClaimAccessor;
+import edu.uoc.lti.claims.ClaimsEnum;
+import edu.uoc.lti.jwt.LtiSigningKeyResolver;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
