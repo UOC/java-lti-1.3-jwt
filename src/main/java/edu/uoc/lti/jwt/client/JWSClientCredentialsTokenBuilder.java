@@ -3,8 +3,8 @@ package edu.uoc.lti.jwt.client;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 
-import java.security.SecureRandom;
 import java.util.Date;
+import java.util.UUID;
 
 import edu.uoc.lti.clientcredentials.ClientCredentialsRequest;
 import edu.uoc.lti.clientcredentials.ClientCredentialsTokenBuilder;
@@ -20,22 +20,20 @@ public class JWSClientCredentialsTokenBuilder implements ClientCredentialsTokenB
 	private final String publicKey;
 	private final String privateKey;
 
-	private SecureRandom secureRandom = new SecureRandom();
-
 	@Override
 	public String build(ClientCredentialsRequest request) {
 		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey);
-		byte bytes[] = new byte[10];
-		secureRandom.nextBytes(bytes);
+
 		return Jwts.builder()
-						.setHeaderParam("kid", request.getKid())
-						.setIssuer(request.getToolName())
+						//.setHeaderParam("kid", request.getKid())
+						.setHeaderParam("typ", "JWT")
+						.setIssuer(request.getClientId())
 						.setSubject(request.getClientId())
 						.setAudience(request.getOauth2Url())
 						.setIssuedAt(new Date())
 						.setExpiration(new Date(System.currentTimeMillis() + _5_MINUTES))
 						.signWith(algorithmFactory.getPrivateKey())
-						.setId(new String(bytes))
+						.setId(UUID.randomUUID().toString())
 						.compact();
 	}
 }
