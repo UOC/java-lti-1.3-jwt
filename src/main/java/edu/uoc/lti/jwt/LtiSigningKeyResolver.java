@@ -24,6 +24,10 @@ public class LtiSigningKeyResolver extends SigningKeyResolverAdapter  {
 	public Key resolveSigningKey(JwsHeader header, Claims claims) {
 		String keyId = header.getKeyId();
 
+		if (keyId == null) {
+			return null;
+		}
+
 		Key key = null;
 		try {
 			JwkProvider provider = new UrlJwkProvider(new URL(keysetUrl));
