@@ -10,6 +10,7 @@ import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author Xavi Aracil <xaracil@uoc.edu>
@@ -27,8 +28,7 @@ public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
 		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey);
 
 		final JwtBuilder builder = Jwts.builder()
-						.setHeaderParam("kid", deepLinkingResponse.getKid())
-						.setIssuer(deepLinkingResponse.getToolName())
+						.setIssuer(deepLinkingResponse.getClientId())
 						.setAudience(deepLinkingResponse.getPlatformName())
 						.setIssuedAt(new Date())
 						.setExpiration(new Date(System.currentTimeMillis() + _5_MINUTES))
