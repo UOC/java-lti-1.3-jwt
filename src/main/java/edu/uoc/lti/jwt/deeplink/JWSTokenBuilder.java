@@ -4,7 +4,7 @@ import edu.uoc.lti.claims.ClaimsEnum;
 import edu.uoc.lti.deeplink.DeepLinkingResponse;
 import edu.uoc.lti.deeplink.DeepLinkingTokenBuilder;
 import edu.uoc.lti.jwt.AlgorithmFactory;
-import edu.uoc.lti.MessageTypesEnum;
+import edu.uoc.lti.ResponseMessageTypeEnum;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
@@ -33,11 +33,10 @@ public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
 						.setIssuedAt(new Date())
 						.setExpiration(new Date(System.currentTimeMillis() + _5_MINUTES))
 						.signWith(algorithmFactory.getPrivateKey())
-						.claim(ClaimsEnum.MESSAGE_TYPE.getName(), MessageTypesEnum.LtiDeepLinkingRequest.name())
+						.claim(ClaimsEnum.MESSAGE_TYPE.getName(), ResponseMessageTypeEnum.LtiDeepLinkingResponse.name())
 						.claim(ClaimsEnum.VERSION.getName(), "1.3.0")
 						.claim(ClaimsEnum.DEPLOYMENT_ID.getName(), deepLinkingResponse.getDeploymentId())
 						.claim(ClaimsEnum.DEEP_LINKING_CONTENT_ITEMS.getName(), deepLinkingResponse.getItemList());
-
 
 		if (deepLinkingResponse.getAzp() != null) {
 			builder.claim(AUTHORIZED_PART, deepLinkingResponse.getAzp());
