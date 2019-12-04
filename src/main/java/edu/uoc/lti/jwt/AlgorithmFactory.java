@@ -15,7 +15,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 /**
- * @author Xavi Aracil <xaracil@uoc.edu>
+ * @author xaracil@uoc.edu
  */
 public class AlgorithmFactory {
 	private final RSAPublicKey publicKey;

@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 
 /**
- * @author Xavi Aracil <xaracil@uoc.edu>
+ * @author xaracil@uoc.edu
  */
 @RequiredArgsConstructor
 public class JWSTokenBuilder implements DeepLinkingTokenBuilder {

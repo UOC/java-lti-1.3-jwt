@@ -12,7 +12,7 @@ import io.jsonwebtoken.Jwts;
 import java.util.Date;
 
 /**
- * @author Xavi Aracil <xaracil@uoc.edu>
+ * @author xaracil@uoc.edu
  */
 public class JWSClaimAccessor implements ClaimAccessor {
 	private final static long _5_MINUTES = 5 * 60;

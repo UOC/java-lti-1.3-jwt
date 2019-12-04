@@ -14,7 +14,7 @@ import java.net.URL;
 import java.security.Key;
 
 /**
- * @author Xavi Aracil <xaracil@uoc.edu>
+ * @author xaracil@uoc.edu
  */
 @RequiredArgsConstructor
 public class LtiSigningKeyResolver extends SigningKeyResolverAdapter  {
