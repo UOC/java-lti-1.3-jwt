@@ -1,15 +1,15 @@
 package edu.uoc.lti.jwt.deeplink;
 
+import java.util.Date;
+
+import edu.uoc.lti.ResponseMessageTypeEnum;
 import edu.uoc.lti.claims.ClaimsEnum;
 import edu.uoc.lti.deeplink.DeepLinkingResponse;
 import edu.uoc.lti.deeplink.DeepLinkingTokenBuilder;
 import edu.uoc.lti.jwt.AlgorithmFactory;
-import edu.uoc.lti.ResponseMessageTypeEnum;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Date;
 
 /**
  * @author xaracil@uoc.edu

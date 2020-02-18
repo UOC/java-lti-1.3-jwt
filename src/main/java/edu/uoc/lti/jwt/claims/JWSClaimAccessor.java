@@ -1,5 +1,7 @@
 package edu.uoc.lti.jwt.claims;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.uoc.lti.claims.ClaimAccessor;
@@ -8,8 +10,6 @@ import edu.uoc.lti.jwt.LtiSigningKeyResolver;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-
-import java.util.Date;
 
 /**
  * @author xaracil@uoc.edu

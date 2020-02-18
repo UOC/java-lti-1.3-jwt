@@ -1,17 +1,18 @@
 package edu.uoc.lti.jwt;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.Key;
+
 import com.auth0.jwk.Jwk;
 import com.auth0.jwk.JwkException;
 import com.auth0.jwk.JwkProvider;
 import com.auth0.jwk.UrlJwkProvider;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.SigningKeyResolverAdapter;
 import lombok.RequiredArgsConstructor;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.Key;
 
 /**
  * @author xaracil@uoc.edu
