@@ -1,14 +1,13 @@
 package edu.uoc.lti.jwt.client;
 
-import io.jsonwebtoken.Jwts;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Date;
 import java.util.UUID;
 
 import edu.uoc.lti.clientcredentials.ClientCredentialsRequest;
 import edu.uoc.lti.clientcredentials.ClientCredentialsTokenBuilder;
 import edu.uoc.lti.jwt.AlgorithmFactory;
+import io.jsonwebtoken.Jwts;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author xaracil@uoc.edu

@@ -1,9 +1,5 @@
 package edu.uoc.lti.jwt;
 
-import lombok.Getter;
-import sun.security.util.DerInputStream;
-import sun.security.util.DerValue;
-
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.GeneralSecurityException;
@@ -13,6 +9,10 @@ import java.security.interfaces.RSAPublicKey;
 import java.security.spec.RSAPrivateCrtKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+
+import lombok.Getter;
+import sun.security.util.DerInputStream;
+import sun.security.util.DerValue;
 
 /**
  * @author xaracil@uoc.edu
