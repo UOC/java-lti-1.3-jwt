@@ -13,12 +13,14 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.SigningKeyResolverAdapter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 
 /**
  * @author xaracil@uoc.edu
  */
+@Log
 @RequiredArgsConstructor
-public class LtiSigningKeyResolver extends SigningKeyResolverAdapter  {
+public class LtiSigningKeyResolver extends SigningKeyResolverAdapter {
 	private final String keysetUrl;
 
 	@Override
@@ -34,10 +36,8 @@ public class LtiSigningKeyResolver extends SigningKeyResolverAdapter  {
 			JwkProvider provider = new UrlJwkProvider(new URL(keysetUrl));
 			Jwk jwk = provider.get(keyId);
 			key = jwk.getPublicKey();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (JwkException e) {
-			e.printStackTrace();
+		} catch (MalformedURLException | JwkException e) {
+			log.warning("Signing key cannot be resolved: " + e.getMessage());
 		}
 		return key;
 	}

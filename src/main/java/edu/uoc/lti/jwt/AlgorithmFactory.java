@@ -17,9 +17,9 @@ import sun.security.util.DerValue;
 /**
  * @author xaracil@uoc.edu
  */
+@Getter
 public class AlgorithmFactory {
 	private final RSAPublicKey publicKey;
-	@Getter
 	private final RSAPrivateKey privateKey;
 
 	public AlgorithmFactory(String publicKey, String privateKey) {
@@ -48,7 +48,8 @@ public class AlgorithmFactory {
 			BigInteger exp2 = seq[7].getBigInteger();
 			BigInteger crtCoef = seq[8].getBigInteger();
 
-			RSAPrivateCrtKeySpec keySpecPv = new RSAPrivateCrtKeySpec(modulus, publicExp, privateExp, prime1, prime2, exp1, exp2, crtCoef);
+			RSAPrivateCrtKeySpec keySpecPv = new RSAPrivateCrtKeySpec(modulus, publicExp, privateExp, prime1, prime2,
+					exp1, exp2, crtCoef);
 
 			this.privateKey = (RSAPrivateKey) kf.generatePrivate(keySpecPv);
 
