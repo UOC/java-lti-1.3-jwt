@@ -3,12 +3,37 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.uoc.elc.lti</groupId>
-	<artifactId>lti-1.3-jwt</artifactId>
-	<version>0.0.2</version>
+	<artifactId>lti-13-jwt</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>lti-1.3-jwt</name>
+  <name>${project.groupId}:${project.artifactId}</name>
 	<description>Library with JWT implementations of LTI's JWT interfaces</description>
+  <url>https://github.com/UOC/java-lti-1.3-jwt</url>
+
+  <scm>
+    <connection>scm:git:git@github.com:UOC/java-lti-1.3-jwt.git</connection>
+    <developerConnection>scm:git:git@github.com:UOC/java-lti-1.3-jwt.git</developerConnection>
+    <url>https://github.com/UOC/java-lti-1.3-jwt</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>github-uoc</id>
+      <name>GitHub UOC Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/uoc/java-lti-1.3-jwt</url>
+    </repository>
+  </distributionManagement>
+
+  <developers>
+    <developer>
+      <name>Xavi Aracil</name>
+      <email>xaracil@uoc.edu</email>
+      <organization>Universitat Oberta de Catalunya</organization>
+      <organizationUrl>https://www.uoc.edu</organizationUrl>
+    </developer>
+  </developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +44,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.uoc.elc.lti</groupId>
-			<artifactId>lti-1.3-core</artifactId>
+			<artifactId>lti-13-core</artifactId>
 			<version>0.0.2</version>
 		</dependency>
 		<dependency>
