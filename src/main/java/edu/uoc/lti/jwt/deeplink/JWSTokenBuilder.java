@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @RequiredArgsConstructor
 public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
-	private final static long _5_MINUTES = 5 * 30 * 1000;
+	private final static long _5_MINUTES = 5 * 60 * 1000;
 	private final static String AUTHORIZED_PART = "azp";
 
 	private final String publicKey;

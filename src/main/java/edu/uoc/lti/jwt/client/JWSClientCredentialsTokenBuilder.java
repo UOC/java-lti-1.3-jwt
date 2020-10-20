@@ -16,7 +16,7 @@ import edu.uoc.lti.jwt.AlgorithmFactory;
 @RequiredArgsConstructor
 public class JWSClientCredentialsTokenBuilder implements ClientCredentialsTokenBuilder {
 
-	private final static long _5_MINUTES = 5 * 30 * 1000;
+	private final static long _5_MINUTES = 5 * 60 * 1000;
 	private final String publicKey;
 	private final String privateKey;
 
