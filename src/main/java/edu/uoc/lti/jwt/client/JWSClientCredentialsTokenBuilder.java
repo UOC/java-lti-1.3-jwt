@@ -25,7 +25,7 @@ public class JWSClientCredentialsTokenBuilder implements ClientCredentialsTokenB
 		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey);
 
 		return Jwts.builder()
-						//.setHeaderParam("kid", request.getKid())
+						.setHeaderParam("kid", request.getClientId())
 						.setHeaderParam("typ", "JWT")
 						.setIssuer(request.getClientId())
 						.setSubject(request.getClientId())

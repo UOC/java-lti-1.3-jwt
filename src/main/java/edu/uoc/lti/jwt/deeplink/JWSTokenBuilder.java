@@ -27,6 +27,7 @@ public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
 		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey);
 
 		final JwtBuilder builder = Jwts.builder()
+						.setHeaderParam("kid", deepLinkingResponse.getClientId())
 						.setIssuer(deepLinkingResponse.getClientId())
 						.setAudience(deepLinkingResponse.getPlatformName())
 						.setIssuedAt(new Date())
