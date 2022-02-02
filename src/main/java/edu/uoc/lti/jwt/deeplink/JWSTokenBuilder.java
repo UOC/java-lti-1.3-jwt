@@ -21,10 +21,11 @@ public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
 
 	private final String publicKey;
 	private final String privateKey;
+	private final String algorithm;
 
 	@Override
 	public String build(DeepLinkingResponse deepLinkingResponse) {
-		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey);
+		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey, algorithm);
 
 		final JwtBuilder builder = Jwts.builder()
 						.setIssuer(deepLinkingResponse.getClientId())

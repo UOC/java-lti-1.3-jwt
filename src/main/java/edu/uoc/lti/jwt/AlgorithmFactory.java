@@ -22,10 +22,10 @@ public class AlgorithmFactory {
 	@Getter
 	private final RSAPrivateKey privateKey;
 
-	public AlgorithmFactory(String publicKey, String privateKey) {
+	public AlgorithmFactory(String publicKey, String privateKey, String algorithm) {
 		KeyFactory kf;
 		try {
-			kf = KeyFactory.getInstance("RSA");
+			kf = KeyFactory.getInstance(algorithm);
 			byte[] encodedPb = Base64.getDecoder().decode(publicKey);
 			X509EncodedKeySpec keySpecPb = new X509EncodedKeySpec(encodedPb);
 			this.publicKey = (RSAPublicKey) kf.generatePublic(keySpecPb);
