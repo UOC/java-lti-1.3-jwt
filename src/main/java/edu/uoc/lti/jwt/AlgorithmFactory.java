@@ -18,6 +18,7 @@ import java.util.Base64;
  * @author xaracil@uoc.edu
  */
 public class AlgorithmFactory {
+	@Getter
 	private final RSAPublicKey publicKey;
 	@Getter
 	private final RSAPrivateKey privateKey;
