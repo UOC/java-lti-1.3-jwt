@@ -9,7 +9,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author xaracil@uoc.edu
@@ -57,12 +60,18 @@ public class JWSClaimAccessor implements ClaimAccessor {
 	}
 
 	@Override
-	public String getAudience() {
+	public List<String> getAudiences() {
 		if (this.jws == null) {
 			return null;
 		}
 
-		return jws.getBody().getAudience();
+		final String aud = jws.getBody().getAudience();
+		if (aud.startsWith("[")) {
+			// is an array
+			return Arrays.asList(aud.replaceAll("^\\[", "").replaceAll("\\]$", "").split(","));
+		}
+		// is an string
+		return Collections.singletonList(aud);
 	}
 
 	@Override
