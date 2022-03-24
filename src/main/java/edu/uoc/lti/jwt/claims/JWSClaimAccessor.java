@@ -1,7 +1,7 @@
 package edu.uoc.lti.jwt.claims;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import edu.uoc.lti.claims.ClaimAccessor;
 import edu.uoc.lti.claims.ClaimsEnum;
 import edu.uoc.lti.jwt.LtiSigningKeyResolver;
@@ -10,7 +10,6 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +30,16 @@ public class JWSClaimAccessor implements ClaimAccessor {
 
 	public JWSClaimAccessor(String keySetUrl) {
 		this.ltiSigningKeyResolver = new LtiSigningKeyResolver(keySetUrl);
+		objectMapper.configure(
+						DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
 	@Override
 	public void decode(String token) {
-		this.jws = Jwts.parser()
+		this.jws = Jwts.parserBuilder()
 						.setSigningKeyResolver(ltiSigningKeyResolver)
 						.setAllowedClockSkewSeconds(allowedClockSkewSeconds)
+						.build()
 						.parseClaimsJws(token);
 	}
 
@@ -65,13 +67,9 @@ public class JWSClaimAccessor implements ClaimAccessor {
 			return null;
 		}
 
-		final String aud = jws.getBody().getAudience();
-		if (aud.startsWith("[")) {
-			// is an array
-			return Arrays.asList(aud.replaceAll("^\\[", "").replaceAll("\\]$", "").split(","));
-		}
-		// is an string
-		return Collections.singletonList(aud);
+		String aud = jws.getBody().getAudience();
+		aud.replaceAll("^\\[", "").replaceAll("\\]$", "");
+		return Arrays.asList(aud.split(","));
 	}
 
 	@Override
