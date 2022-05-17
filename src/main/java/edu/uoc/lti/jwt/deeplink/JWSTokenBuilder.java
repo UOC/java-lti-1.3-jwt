@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @RequiredArgsConstructor
 public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
-	private final static long _5_MINUTES = 5 * 30 * 1000;
+	private final static long _5_MINUTES = 5 * 60 * 1000;
 	private final static String AUTHORIZED_PART = "azp";
 
 	private final String publicKey;
@@ -28,6 +28,7 @@ public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
 		AlgorithmFactory algorithmFactory = new AlgorithmFactory(publicKey, privateKey, algorithm);
 
 		final JwtBuilder builder = Jwts.builder()
+						.setHeaderParam("kid", deepLinkingResponse.getClientId())
 						.setIssuer(deepLinkingResponse.getClientId())
 						.setAudience(deepLinkingResponse.getPlatformName())
 						.setIssuedAt(new Date())
