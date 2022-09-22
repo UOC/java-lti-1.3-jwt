@@ -1,8 +1,9 @@
 package edu.uoc.lti.jwt;
 
 import lombok.Getter;
-import sun.security.util.DerInputStream;
-import sun.security.util.DerValue;
+import org.bouncycastle.asn1.ASN1InputStream;
+import org.bouncycastle.asn1.ASN1Integer;
+import org.bouncycastle.asn1.ASN1Sequence;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -31,23 +32,23 @@ public class AlgorithmFactory {
 			X509EncodedKeySpec keySpecPb = new X509EncodedKeySpec(encodedPb);
 			this.publicKey = (RSAPublicKey) kf.generatePublic(keySpecPb);
 
-			DerInputStream derReader = new DerInputStream(Base64.getDecoder().decode(privateKey));
+			ASN1InputStream derReader = new ASN1InputStream(Base64.getDecoder().decode(privateKey));
 
-			DerValue[] seq = derReader.getSequence(0);
+			ASN1Sequence seq = (ASN1Sequence) derReader.readObject();
 
-			if (seq.length < 9) {
+			if (seq.size() < 9) {
 				throw new GeneralSecurityException("Could not parse a PKCS1 private key.");
 			}
 
-			// skip version seq[0];
-			BigInteger modulus = seq[1].getBigInteger();
-			BigInteger publicExp = seq[2].getBigInteger();
-			BigInteger privateExp = seq[3].getBigInteger();
-			BigInteger prime1 = seq[4].getBigInteger();
-			BigInteger prime2 = seq[5].getBigInteger();
-			BigInteger exp1 = seq[6].getBigInteger();
-			BigInteger exp2 = seq[7].getBigInteger();
-			BigInteger crtCoef = seq[8].getBigInteger();
+			// skip version seq.getObjectAt(0);
+			BigInteger modulus = ((ASN1Integer) seq.getObjectAt(1)).getValue();
+			BigInteger publicExp = ((ASN1Integer) seq.getObjectAt(2)).getValue();
+			BigInteger privateExp = ((ASN1Integer) seq.getObjectAt(3)).getValue();
+			BigInteger prime1 = ((ASN1Integer) seq.getObjectAt(4)).getValue();
+			BigInteger prime2 = ((ASN1Integer) seq.getObjectAt(5)).getValue();
+			BigInteger exp1 = ((ASN1Integer) seq.getObjectAt(6)).getValue();
+			BigInteger exp2 = ((ASN1Integer) seq.getObjectAt(7)).getValue();
+			BigInteger crtCoef = ((ASN1Integer) seq.getObjectAt(8)).getValue();
 
 			RSAPrivateCrtKeySpec keySpecPv = new RSAPrivateCrtKeySpec(modulus, publicExp, privateExp, prime1, prime2, exp1, exp2, crtCoef);
 
