@@ -28,6 +28,7 @@ public class JWSClientCredentialsTokenBuilder implements ClientCredentialsTokenB
 		return Jwts.builder()
 						//.setHeaderParam("kid", request.getKid())
 						.setHeaderParam("typ", "JWT")
+						.setHeaderParam("kid", request.getKid())
 						.setIssuer(request.getClientId())
 						.setSubject(request.getClientId())
 						.setAudience(request.getOauth2Url())
