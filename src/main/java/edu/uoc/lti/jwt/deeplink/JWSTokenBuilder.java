@@ -63,6 +63,8 @@ public class JWSTokenBuilder implements DeepLinkingTokenBuilder {
 			builder.claim(ClaimsEnum.DEEP_LINKING_ERROR_LOG.getName(), deepLinkingResponse.getErrorLog());
 		}
 
+		builder.setHeaderParam("kid", deepLinkingResponse.getKid());
+
 		return builder.compact();
 	}
 }

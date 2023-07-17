@@ -4,7 +4,7 @@
 
 	<groupId>edu.uoc.elc.lti</groupId>
 	<artifactId>lti-13-jwt</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>edu.uoc.elc.lti</groupId>
 			<artifactId>lti-13-core</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.auth0</groupId>
